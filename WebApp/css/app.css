@@ -1,0 +1,140 @@
+.username{
+    text-align: right;
+}
+
+.legenda{
+    float:right;
+    margin: 20px 20px 0px 0px;
+}
+
+.kalender{
+    width: 100%;
+    table-layout: fixed;
+    clear: both;
+}
+.kalender th{
+    text-align: center;
+}
+
+.dag{
+    height: 100px;
+    position: relative;
+    background-color: #f5f5f5;
+    border: 2px solid #ffffff;
+    padding: 3px 23px 3px 3px;
+    vertical-align: top;
+}
+.weeknr{
+    width: 50px;
+}
+.buitenmaand{
+    opacity: 0.3;
+}
+.datum{
+    position: absolute;
+    right: 3px;
+    top: 4px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.dag.aantal1 .afspraak{
+    width: 100%;
+}
+.dag.aantal2 .afspraak{
+    width: 50%;
+}
+.dag.aantal3 .afspraak{
+    width: 33%;
+}
+.dag.aantal4 .afspraak{
+    width: 25%;
+}
+.dag.aantal5 .afspraak{
+    width: 20%;
+}
+.dag.aantal6 .afspraak{
+    width: calc(100% / 6);
+}
+.dag.aantal7 .afspraak{
+    width: calc(100% / 7);
+}
+.dag.aantal8 .afspraak{
+    width: calc(100% / 8);
+}
+.dag.aantal9 .afspraak{
+    width: calc(100% / 9);
+}
+.dag.aantal10 .afspraak{
+    width: calc(100% / 10);
+}
+.dag.aantal11 .afspraak{
+    width: calc(100% / 11);
+}
+.dag.aantal12 .afspraak{
+    width: calc(100% / 12);
+}
+.dag.aantal13 .afspraak{
+    width: calc(100% / 13);
+}
+.dag.aantal14 .afspraak{
+    width: calc(100% / 14);
+}
+.afspraak{
+    background-color: #5bc0de;
+    height: 30px;
+    float: left;
+    border-radius: 5px;
+    border: 2px solid #f5f5f5;
+    font-size: 11px;
+    word-wrap: break-word;
+    overflow: hidden;
+    position: relative;
+}
+.afspraak.aanvraag,
+.legenda td.aanvraag{
+    background-color: rgb(141, 210, 90);
+}
+.afspraak.geannuleerd,
+.legenda td.geannuleerd{
+    opacity: 0.2;
+}
+.afspraak.betaald,
+.legenda td.betaald{
+    background-color: #3e9ab5;
+}
+
+.legenda td{
+    background-color: #5bc0de;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 5px;
+    border: 2px solid #f5f5f5;
+}
+
+
+.afspraak.middag.avond{
+    height: 60px;
+}
+.afspraak.ochtend.middag{
+    height: 60px;
+}
+.afspraak.ochtend.middag.avond{
+    height: 90px;
+}
+
+.afspraak.avond{
+    margin-top: 60px;
+}
+.afspraak.middag{
+    margin-top: 30px;
+}
+.afspraak.ochtend{
+    margin-top: 0px;
+}
+
+.versie{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}

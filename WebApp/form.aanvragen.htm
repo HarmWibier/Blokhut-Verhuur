@@ -1,0 +1,107 @@
+<div class="container">
+<form name="aanvragen" ng-submit="formsubmit()">
+    <h2>Aanvragen</h2>
+    
+    <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="groepsnaam">Groepsnaam:</label>
+          <input type="text" class="form-control" name="groepsnaam" id="groepsnaam" ng-model="current.groep_naam">
+          
+        </div>
+
+        
+        <div class="col-md-3 form-group">
+          <label for="aantal_pers">Aantal personen:</label>
+          <input type="number" class="form-control" id="aantal_pers" ng-model="current.aantal_pers">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label for="startdatum">Start datum:</label>
+            <div class="input-group">
+              <input type="text id="startdatum" class="form-control" uib-datepicker-popup="{{format}}" ng-model="current.startdatum" is-open="startOpen" datepicker-options="startDateOptions" ng-required="true" close-text="Sluiten" alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openStart()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+        </div>
+        
+        <div class="col-md-4 form-group">
+          <label>Start dagdeel:</label><br>
+            <div class="btn-group">
+                <label ng-repeat="d in dagdelen" class="btn btn-primary" ng-model="current.startdagdeel" uib-btn-radio="d.id">{{d.value}}</label>
+            </div>
+        </div>
+
+        <div class="col-md-2 form-group">
+            <label for="einddatum">Eind datum:</label>
+            <div class="input-group">
+              <input type="text" id="einddatum" class="form-control" uib-datepicker-popup="{{format}}" ng-model="current.einddatum" is-open="eindOpen" datepicker-options="endDateOptions" ng-required="true" close-text="Sluiten" alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openEind()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+        </div>
+
+        <div class="col-md-4 form-group">
+          <label>Eind dagdeel:</label><br>
+            <div class="btn-group">
+                <label ng-repeat="d in dagdelen" class="btn btn-primary" ng-model="current.einddagdeel" uib-btn-radio="d.id">{{d.value}}</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="bivak_herkenning">Bivak herkenning:</label>
+          <input type="text" class="form-control" id="bivak_herkenning" ng-model="current.bivak_herkenning">
+        </div>
+    </div>
+    
+    <div class="row">
+        <fieldset class="col-md-12">
+            <legend>Contactpersoon</legend>
+            <div class="col-md-6 form-group">
+              <label for="contact_voornaam">Voornaam:</label>
+              <input type="text" class="form-control" id="contact_voornaam" ng-model="current.contact_voornaam">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_achternaam">Achternaam:</label>
+              <input type="text" class="form-control" id="contact_achternaam" ng-model="current.contact_achternaam">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_email">Email:</label>
+              <input type="email" class="form-control" id="contact_email" ng-model="current.contact_email">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_telefoon">Telefoon:</label>
+              <input type="text" class="form-control" id="contact_telefoon" ng-model="current.contact_telefoon">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_adres">Adres:</label>
+              <input type="text" class="form-control" id="contact_adres" ng-model="current.contact_adres">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_postcode">Postcode:</label>
+              <input type="text" class="form-control" id="achternaam" ng-model="current.contact_postcode">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_woonplaats">Woonplaats:</label>
+              <input type="text" class="form-control" id="contact_woonplaats" ng-model="current.contact_woonplaats">
+            </div>
+        </fieldset>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="g-recaptcha" id="g-recaptcha" ng-init="initRecaptcha()"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <button type="button" class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Versturen</button>
+        </div>
+    </div>
+</form>
+</div>

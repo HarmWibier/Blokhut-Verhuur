@@ -1,0 +1,132 @@
+<div class="container">
+    <h2>Bewerken</h2>
+    
+    <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="groepsnaam">Groepsnaam:</label>
+          <input type="text" class="form-control" id="groepsnaam" ng-model="current.groep_naam" ng-disabled="readonly">
+        </div>
+
+        
+        <div class="col-md-3 form-group">
+          <label for="aantal_pers">Aantal personen:</label>
+          <input type="number" class="form-control" id="aantal_pers" ng-model="current.aantal_pers" ng-disabled="readonly">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label for="startdatum">Start datum:</label>
+            <div class="input-group">
+              <input type="text id="startdatum" class="form-control" uib-datepicker-popup="{{format}}" ng-model="current.startdatum" is-open="startOpen" datepicker-options="startDateOptions" ng-required="true" close-text="Sluiten" alt-input-formats="altInputFormats" ng-disabled="readonly" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openStart()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+        </div>
+        
+        <div class="col-md-4 form-group">
+          <label>Start dagdeel:</label><br>
+            <div class="btn-group">
+                <label ng-repeat="d in dagdelen" class="btn btn-primary" ng-model="current.startdagdeel" uib-btn-radio="d.id"  ng-disabled="readonly">{{d.value}}</label>
+            </div>
+        </div>
+
+        <div class="col-md-2 form-group">
+            <label for="einddatum">Eind datum:</label>
+            <div class="input-group">
+              <input type="text" id="einddatum" class="form-control" uib-datepicker-popup="{{format}}" ng-model="current.einddatum" is-open="eindOpen" datepicker-options="endDateOptions" ng-required="true" close-text="Sluiten" alt-input-formats="altInputFormats" ng-disabled="readonly" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openEind()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+        </div>
+
+        <div class="col-md-4 form-group">
+          <label>Eind dagdeel:</label><br>
+            <div class="btn-group">
+                <label ng-repeat="d in dagdelen" class="btn btn-primary" ng-model="current.einddagdeel" uib-btn-radio="d.id" ng-disabled="readonly">{{d.value}}</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+<!--         <div class="col-md-6 form-group">
+          <label for="sel1">Status:</label>
+          <select class="form-control" id="sel1" ng-model="current.status" ng-options="key as value for (key , value) in statussen" ng-disabled="readonly">
+          </select>
+        </div>
+         -->
+        <div class="col-md-6 form-group">
+          <label>Status:</label><br>
+            <div class="btn-group">
+                <label ng-repeat="(key, value) in statussen" class="btn btn-primary" ng-model="current.status" uib-btn-radio="key"  ng-disabled="readonly">{{value}}</label>
+            </div>
+        </div>
+
+        
+        <div class="col-md-6 form-group">
+          <label for="bivak_herkenning">Bivak herkenning:</label>
+          <input type="text" class="form-control" id="bivak_herkenning" ng-model="current.bivak_herkenning" ng-disabled="readonly">
+        </div>
+    </div>
+    
+    <div class="row">
+        <fieldset class="col-md-12">
+            <legend>Contactpersoon</legend>
+            <div class="col-md-6 form-group">
+              <label for="contact_voornaam">Voornaam:</label>
+              <input type="text" class="form-control" id="contact_voornaam" ng-model="current.contact_voornaam" ng-disabled="readonly">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_achternaam">Achternaam:</label>
+              <input type="text" class="form-control" id="contact_achternaam" ng-model="current.contact_achternaam" ng-disabled="readonly">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_email">Email:</label>
+              <input type="email" class="form-control" id="contact_email" ng-model="current.contact_email" ng-disabled="readonly">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_telefoon">Telefoon:</label>
+              <input type="text" class="form-control" id="contact_telefoon" ng-model="current.contact_telefoon" ng-disabled="readonly">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_adres">Adres:</label>
+              <input type="text" class="form-control" id="contact_adres" ng-model="current.contact_adres" ng-disabled="readonly">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_postcode">Postcode:</label>
+              <input type="text" class="form-control" id="achternaam" ng-model="current.contact_postcode" ng-disabled="readonly">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="contact_woonplaats">Woonplaats:</label>
+              <input type="text" class="form-control" id="contact_woonplaats" ng-model="current.contact_woonplaats" ng-disabled="readonly">
+            </div>
+        </fieldset>
+    </div>
+        
+    <div class="row">
+        <div class="col-md-12 form-group">
+          <label for="opmerking">Opmerking:</label>
+          <textarea class="form-control" rows="5" id="opmerking" ng-model="current.opmerking" ng-disabled="readonly"></textarea>
+        </div>
+
+        <div class="col-md-6 form-group form-group-sm" ng-show="current.id != 'new'">
+          <label for="aangevraagd">Aangevraagd:</label>
+          <input type="text" class="form-control" id="aangevraagd" ng-model="current.aangevraagd" readonly>
+        </div>
+        
+        <div class="col-md-6 form-group form-group-sm" ng-show="current.id != 'new'">
+          <label for="gewijzigd">Gewijzigd:</label>
+          <input type="text" class="form-control" id="gewijzigd" ng-model="current.gewijzigd" readonly>
+        </div>  
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <button type="button" class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-ok" aria-hidden="true"  ng-disabled="readonly"></span> Opslaan</button>
+            <button type="button" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Annuleren</button>
+        </div>
+    </div>
+</div>

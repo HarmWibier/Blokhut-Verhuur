@@ -1,0 +1,41 @@
+<div class="container">
+    <ul class="pagination">
+      <li><a href="" ng-click="vorige();">vorige</a></li>
+      <li class="disabled"><a href=""><b>{{maandnaam[maand]}} {{jaar}}</b></a></li>
+      <li><a href="" ng-click="volgende();">volgende</a></li>
+    </ul>
+    
+    <table class="legenda">
+        <tr>
+            <th>Legenda:</th>
+            <td class="aanvraag">aanvraag</td>
+            <td class="reservering">reservering</td>
+            <td class="betaald">betaald</td>
+        </tr>
+        
+    </table>
+
+    <table class="kalender">
+        <tr>
+            <th class="weeknr">Week</th>
+            <th>Maandag</th>
+            <th>Dinsdag</th>
+            <th>Woensdag</th>
+            <th>Donderdag</th>
+            <th>Vrijdag</th>
+            <th>Zaterdag</th>
+            <th>Zondag</th>
+        </tr>
+        <tr ng-repeat="week in weken">
+            <td class="weeknr">{{weekNr(week)}}</td>
+            <td ng-repeat="weekdag in week" class="dag" ng-class="dagclass(weekdag);">
+                <span class="datum">{{weekdag.dag}}</span>
+                
+                <div ng-repeat="reservering in weekdag.reserveringen" ng-class="resclasses(reservering)" ng-click="openRes(reservering.res.id)">
+                    {{reservering.res.groep_naam}}
+                </div>
+                
+            </td>
+        </tr>
+    </table>
+</div>

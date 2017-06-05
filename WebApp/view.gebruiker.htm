@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>Bewerken</h2>
+
+    <div class="form-group">
+      <label for="usr">Login:</label>
+      <input type="text" class="form-control" id="usr" ng-model="current.login">
+    </div>
+    <div class="form-group" ng-show="current.id=='new'">
+      <label for="password">Wachtwoord:</label>
+      <input type="password" class="form-control" id="password" ng-model="current.password">
+    </div>
+
+    <div class="form-group">
+      <label for="voornaam">Voornaam:</label>
+      <input type="text" class="form-control" id="voornaam" ng-model="current.voornaam">
+    </div>
+
+    <div class="form-group">
+      <label for="achternaam">Achternaam:</label>
+      <input type="text" class="form-control" id="achternaam" ng-model="current.achternaam">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" ng-model="current.email">
+    </div>
+    
+    <div class="form-group">
+      <label>Actief:</label><br>
+        <div class="btn-group">
+            <label class="btn btn-primary" ng-model="current.actief" uib-btn-radio="1">Ja</label>
+            <label class="btn btn-primary" ng-model="current.actief" uib-btn-radio="0">Nee</label>
+        </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Email Updates:</label><br>
+        <div class="btn-group">
+            <label class="btn btn-primary" ng-model="current.mailupdates" uib-btn-radio="1">Ja</label>
+            <label class="btn btn-primary" ng-model="current.mailupdates" uib-btn-radio="0">Nee</label>
+        </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="sel1">Level:</label>
+      <select class="form-control" id="sel1" ng-model="current.level" ng-options="key as value for (key , value) in levels">
+      </select>
+    </div>
+    
+    
+    <button type="button" class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Opslaan</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Annuleren</button>
+    <button type="button" class="btn btn-danger" ng-click="remove()" style="margin-left: 100px;"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Verwijderen</button>
+</div>

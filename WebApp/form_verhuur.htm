@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blokhut Verhuur Beheer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+
+<script src="Js/moment.min.js"></script>
+<script src="form.app.js"></script>
+<script src="form.planning.js"></script>
+<script src="form.aanvragen.js"></script>
+<script src="app.globals.js"></script>
+<script src="app.settings.js"></script>
+<script src="app.modalservice.js"></script>
+<script>
+    var recaptchaInit = null;
+    
+    var onloadCallback = function() {
+        if(recaptchaInit){
+            recaptchaInit();
+        }
+      };
+</script>
+
+<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'></script>
+</head>
+<body ng-app="blokhut_form">
+<h1 ng-controller="settingsCtrl">{{blokhutnaam}} Verhuur Kalender</h1>
+
+
+<div ng-view>
+<h3>Bezig met laden..</h3>
+</div>
+
+</body>
+</html>
+

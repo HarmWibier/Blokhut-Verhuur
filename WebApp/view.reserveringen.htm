@@ -1,0 +1,33 @@
+<div class="container" ng-show="!detail">
+  <h2>Overzicht</h2>
+  <p>Alle {{title().toLowerCase()}} in een overzicht:</p>
+  <button type="button" class="btn btn-default" ng-click="edit(null);"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nieuw</button><br><br>
+  
+  <div class="checkbox" ng-show="!isAanvraag()">
+    <label>
+       <input type="checkbox" ng-model="filterGeannuleerd" ng-change="refresh()">Geannuleerd
+    </label>
+  </div>  
+  <div class="checkbox" ng-show="!isAanvraag()">
+    <label>
+       <input type="checkbox" ng-model="filterHistorie" ng-change="refresh()">Historie
+    </label>
+  </div>
+
+    
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr><th>Naam</th><th>Email</th><th>Van</th><th>Tot</th><th>Personen</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="r in reserveringen" ng-click="edit(r)">
+            <td>{{r.groep_naam}}</td>
+            <td>{{r.contact_email}}</td>
+            <td>{{r.startdatum}} {{dagdeelText(r.startdagdeel)}}</td>
+            <td>{{r.einddatum}} {{dagdeelText(r.einddagdeel) }}</td>
+            <td>{{r.aantal_pers}}</td>
+            <td>{{statusText(r.status)}}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

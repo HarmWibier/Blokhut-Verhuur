@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="col-md-6">
+        <ul class="pagination">
+          <li><a href="" ng-click="vorige();">vorige</a></li>
+          <li class="disabled"><a href=""><b>{{maandnaam[maand]}} {{jaar}}</b></a></li>
+          <li><a href="" ng-click="volgende();">volgende</a></li>
+        </ul>
+    </div>
+    <div class="col-md-6" style="text-align: right">
+        <button type="button" class="btn btn-primary" ng-click="aanvragen();">Aanvragen</button>
+    </div>
+    
+    <table class="kalender">
+        <tr>
+            <th class="weeknr">Week</th>
+            <th>Maandag</th>
+            <th>Dinsdag</th>
+            <th>Woensdag</th>
+            <th>Donderdag</th>
+            <th>Vrijdag</th>
+            <th>Zaterdag</th>
+            <th>Zondag</th>
+        </tr>
+        <tr ng-repeat="week in weken">
+            <td class="weeknr">{{weekNr(week)}}</td>
+            <td ng-repeat="weekdag in week" class="dag" ng-class="dagclass(weekdag);">
+                <span class="datum">{{weekdag.dag}}</span>
+                
+                <div ng-repeat="reservering in weekdag.reserveringen" ng-class="resclasses(reservering)">
+                    
+                </div>
+                
+            </td>
+        </tr>
+    </table>
+</div>

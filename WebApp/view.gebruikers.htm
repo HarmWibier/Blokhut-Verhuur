@@ -1,0 +1,20 @@
+<div class="container" ng-show="!detail">
+  <h2>Overzicht</h2>
+  <p>Aanwezige gebruikers in het systeem:</p>
+  <button type="button" class="btn btn-default" ng-click="edit(null);"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nieuw</button><br><br>
+  
+  <table class="table table-responsive table-striped table-bordered table-hover">
+    <thead>
+        <tr><th>Login</th><th>Naam</th><th>Email</th><th>Level</th><th>Actief</th></tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="g in gebruikers" ng-click="edit(g)">
+            <td>{{g.login}}</td>
+            <td>{{g.voornaam}} {{g.achternaam}}</td>
+            <td>{{g.email}}</td>
+            <td>{{levelText(g.level)}}</td>
+            <td><span class="glyphicon" ng-class="{'glyphicon-ok-sign' : g.actief==1, 'glyphicon-remove-sign' : g.actief==0}" aria-hidden="true"></span></td>
+        </tr>
+    </tbody>
+  </table>
+</div>

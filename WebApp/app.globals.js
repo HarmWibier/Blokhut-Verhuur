@@ -31,7 +31,32 @@ var globals = {
         10 : "Gereserveerd" ,
         20 : "Betaald" ,
         90: "Geannuleerd" 
-    }
+    },
     
+    herhaaltypes : { 
+        0 : "Wekelijks"   ,
+        1 : "Maandelijks" ,
+        2 : "Eerste dag van de Maand"
+    },
+    
+    weekdagen : {
+        0 : "Maandag",
+        1 : "Dinsdag",
+        2 : "Woensdag",
+        3 : "Donderdag",
+        4 : "Vrijdag",
+        5 : "Zaterdag",
+        6 : "Zondag"
+    },
+    
+    
+    dagdeelText : function(eDagdeel){
+        for(var i = 0; i < globals.dagdelen.length; i++){
+            if(globals.dagdelen[i].id == eDagdeel){
+                return globals.dagdelen[i].value;
+            }
+        }
+        return "--";
+    }
     
 }

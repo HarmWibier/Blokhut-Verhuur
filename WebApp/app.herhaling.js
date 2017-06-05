@@ -1,33 +1,45 @@
-angular.module("blokhut_verhuur").controller("reserveringCtrl", function ($scope, $location, $window, $http, $routeParams, modalService, SessionService) {
+angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, $location, $window, $http, $routeParams, modalService, SessionService) {
     var sInitStatus = 0;
     
     $scope.readonly = (SessionService.level < 5);
+    
     $scope.dagdelen = globals.dagdelen;
+    $scope.weekdagen = globals.weekdagen;
     
     $scope.dagdeelText = globals.dagdeelText;
     
     $scope.statussen = globals.statussen;
+    $scope.herhaaltypes = globals.herhaaltypes;
     
     $scope.statusText = function(eStatus){
         return $scope.statussen[eStatus] || "Onbekend";
     }
     
-        
-    $scope.detail = false;
     $scope.current = null;
     
     if($routeParams.ID !== 'new'){
         $http({
             method : "GET",
-            url : "control.reservering.php?action=detail&id=" + $routeParams.ID
+            url : "control.herhaling.php?action=detail&id=" + $routeParams.ID
         }).then(function successCallback(response) {
             if(response.data instanceof Array && response.data.length > 0){
                $scope.current =  response.data[0];
-               $scope.current.aantal_pers = parseInt(response.data[0].aantal_pers, 10);
-               $scope.current.startdagdeel = parseInt(response.data[0].startdagdeel, 10);
-               $scope.current.einddagdeel = parseInt(response.data[0].einddagdeel, 10);
+               $scope.current.herhaaltype = parseInt(response.data[0].herhaaltype, 10);
+               $scope.current.herhaalweekdag = parseInt(response.data[0].herhaalweekdag, 10);
+               $scope.current.herhaalweek = parseInt(response.data[0].herhaalweek, 10);
+               $scope.current.herhaaldag = parseInt(response.data[0].herhaaldag, 10);
+               $scope.current.ochtend = parseInt(response.data[0].ochtend, 10);
+               $scope.current.middag = parseInt(response.data[0].middag, 10);
+               $scope.current.avond = parseInt(response.data[0].avond, 10);
+               $scope.current.actief = parseInt(response.data[0].actief, 10);
                $scope.current.startdatum = new Date(response.data[0].startdatum);
-               $scope.current.einddatum = new Date(response.data[0].einddatum);
+               $
+               scope.current.eindig = response.data[0].einddatum != null;
+               if($scope.current.eindig){
+                    $scope.current.einddatum = new Date(response.data[0].einddatum);
+               }else{
+                   $scope.current.einddatum = null;
+               }
                
                sInitStatus = $scope.current.status;
             }else{
@@ -43,8 +55,7 @@ angular.module("blokhut_verhuur").controller("reserveringCtrl", function ($scope
         });
         
     }else{
-        $scope.current = { id:"new", status: "0", startdatum : new Date(), startdagdeel : 0, einddatum : new Date(), einddagdeel : 2, aantal_pers : 1 };
-        sInitStatus = $scope.current.status;
+        $scope.current = { id:"new", herhaaltype: "0", ochtend : false, middag : false, avond : true, startdatum : new Date(), eindig : false, einddatum : null  };
     }
     
     $scope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];

@@ -36,6 +36,19 @@ app.config(function($routeProvider) {
         requireLevel: 1,
         highlightMenu : "Reserveringen"
     })
+    .when("/herhalingen", {
+        templateUrl : "view.herhalingen.htm",
+        controller : "herhalingenCtrl",
+        requireLevel: 1,
+        menuName : "Herhalingen",
+        link : "#/herhalingen"
+    })
+    .when("/herhaling/:ID", {
+        templateUrl : "view.herhaling.htm",
+        controller : "herhalingCtrl",
+        requireLevel: 1,
+        highlightMenu : "Herhalingen"
+    })
     .when("/gebruikers", {
         templateUrl : "view.gebruikers.htm",
         controller : "gebruikersCtrl",

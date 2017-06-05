@@ -47,6 +47,11 @@ angular.module("blokhut_verhuur").controller("reserveringenCtrl", function ($sco
             url : "control.reservering.php?action=overview" + ($scope.isAanvraag() ? "&aanvragen=true" : "") + ($scope.filterGeannuleerd ? "&geannuleerd=true" : "") + ($scope.filterHistorie ? "&historie=true" : "")
         }).then(function successCallback(response) {
             if(response.data instanceof Array){
+                response.data.forEach(function(res){
+                    res.einddatum = new Date(res.einddatum);
+                    res.startdatum = new Date(res.startdatum);
+                });
+                
                 $scope.reserveringen = response.data;
             }else{
                 if(response.data.error){

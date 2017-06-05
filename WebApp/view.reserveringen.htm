@@ -23,8 +23,8 @@
         <tr ng-repeat="r in reserveringen" ng-click="edit(r)">
             <td>{{r.groep_naam}}</td>
             <td>{{r.contact_email}}</td>
-            <td>{{r.startdatum}} {{dagdeelText(r.startdagdeel)}}</td>
-            <td>{{r.einddatum}} {{dagdeelText(r.einddagdeel) }}</td>
+            <td>{{r.startdatum | date:"dd-MM-yyyy"}} {{dagdeelText(r.startdagdeel)}}</td>
+            <td>{{r.einddatum | date:"dd-MM-yyyy"}} {{dagdeelText(r.einddagdeel) }}</td>
             <td>{{r.aantal_pers}}</td>
             <td>{{statusText(r.status)}}</td>
         </tr>

@@ -33,10 +33,15 @@ var globals = {
         90: "Geannuleerd" 
     },
     
+    actief : { 
+        1 : "Actief"   ,
+        0 : "Uitgeschakeld" 
+    },
+    
     herhaaltypes : { 
         0 : "Wekelijks"   ,
         1 : "Maandelijks" ,
-        2 : "Eerste dag van de Maand"
+        2 : "Zoveelste weekdag van de Maand"
     },
     
     weekdagen : {

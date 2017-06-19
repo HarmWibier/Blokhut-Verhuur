@@ -8,7 +8,7 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
     
     $scope.dagdeelText = globals.dagdeelText;
     
-    $scope.statussen = globals.statussen;
+    $scope.statussen = globals.actief;
     $scope.herhaaltypes = globals.herhaaltypes;
     
     $scope.statusText = function(eStatus){
@@ -33,8 +33,7 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
                $scope.current.avond = parseInt(response.data[0].avond, 10);
                $scope.current.actief = parseInt(response.data[0].actief, 10);
                $scope.current.startdatum = new Date(response.data[0].startdatum);
-               $
-               scope.current.eindig = response.data[0].einddatum != null;
+               $scope.current.eindig = response.data[0].einddatum != null;
                if($scope.current.eindig){
                     $scope.current.einddatum = new Date(response.data[0].einddatum);
                }else{
@@ -55,7 +54,7 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
         });
         
     }else{
-        $scope.current = { id:"new", herhaaltype: "0", ochtend : false, middag : false, avond : true, startdatum : new Date(), eindig : false, einddatum : null  };
+        $scope.current = { id:"new", herhaaltype: "0", ochtend : false, middag : false, avond : true, startdatum : new Date(), eindig : false, einddatum : null, actief : true };
     }
     
     $scope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -100,8 +99,10 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
         $scope.eindOpen = true;
     }
     $scope.$watch('current.startdatum', function(){
-        if($scope.current && $scope.current.einddatum < $scope.current.startdatum){
-            $scope.current.einddatum = $scope.current.startdatum;
+        if($scope.current.einddatum !== null){
+            if($scope.current && $scope.current.einddatum < $scope.current.startdatum){
+                $scope.current.einddatum = $scope.current.startdatum;
+            }
         }
     });
     $scope.save = function(){

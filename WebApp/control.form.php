@@ -1,18 +1,9 @@
 <?
     include('inc.base.php');
     
-    $continue = true;
     
-    function validateError($error){
-        global $continue;
-        global $response;
-        
-        if($continue){
-            $response["success"] = false;
-            $response["message"] = $error;
-            $continue = false;
-        }
-    }
+    
+
     
 
     

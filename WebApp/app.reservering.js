@@ -26,6 +26,7 @@ angular.module("blokhut_verhuur").controller("reserveringCtrl", function ($scope
                $scope.current.aantal_pers = parseInt(response.data[0].aantal_pers, 10);
                $scope.current.startdagdeel = parseInt(response.data[0].startdagdeel, 10);
                $scope.current.einddagdeel = parseInt(response.data[0].einddagdeel, 10);
+               
                $scope.current.startdatum = new Date(response.data[0].startdatum);
                $scope.current.einddatum = new Date(response.data[0].einddatum);
                

@@ -24,14 +24,12 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
         }).then(function successCallback(response) {
             if(response.data instanceof Array && response.data.length > 0){
                $scope.current =  response.data[0];
-               $scope.current.herhaaltype = parseInt(response.data[0].herhaaltype, 10);
-               $scope.current.herhaalweekdag = parseInt(response.data[0].herhaalweekdag, 10);
                $scope.current.herhaalweek = parseInt(response.data[0].herhaalweek, 10);
                $scope.current.herhaaldag = parseInt(response.data[0].herhaaldag, 10);
-               $scope.current.ochtend = parseInt(response.data[0].ochtend, 10);
-               $scope.current.middag = parseInt(response.data[0].middag, 10);
-               $scope.current.avond = parseInt(response.data[0].avond, 10);
-               $scope.current.actief = parseInt(response.data[0].actief, 10);
+               $scope.current.ochtend = response.data[0].ochtend == "1";
+               $scope.current.middag = response.data[0].middag == "1";
+               $scope.current.avond = response.data[0].avond == "1";
+               $scope.current.actief = response.data[0].actief == "1";
                $scope.current.startdatum = new Date(response.data[0].startdatum);
                $scope.current.eindig = response.data[0].einddatum != null;
                if($scope.current.eindig){
@@ -99,7 +97,7 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
         $scope.eindOpen = true;
     }
     $scope.$watch('current.startdatum', function(){
-        if($scope.current.einddatum !== null){
+        if($scope.current && $scope.current.einddatum !== null){
             if($scope.current && $scope.current.einddatum < $scope.current.startdatum){
                 $scope.current.einddatum = $scope.current.startdatum;
             }
@@ -109,14 +107,18 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
         function doSave(){
             $http({
                 method : "POST",
-                url : "control.reservering.php?action=save",
+                url : "control.herhaling.php?action=save",
                 headers: {
                    'Content-Type': "text/xml"	//	Stupid your-webhost.nl doesn't allow JSON header
                 },
                 data : $scope.current
             }).then(function successCallback(response) {
-                if(response.data instanceof Array && response.data.length > 0){
-                    $window.history.back();
+                if(response.data instanceof Object && !response.data.error){
+                    if(response.data.success){
+                        $window.history.back();
+                    }else{
+                        modalService.showError(response.data.message);
+                    }
                 }else{
                     if(response.data.error){
                         modalService.showError(response.data.errorText);
@@ -130,20 +132,20 @@ angular.module("blokhut_verhuur").controller("herhalingCtrl", function ($scope, 
             });
         }
         
-        if($scope.current.status !== sInitStatus){
-            var modalOptions = {
-                closeButtonText: 'Annuleren',
-                actionButtonText: 'Opslaan',
-                headerText: 'Status wijzigen naar ' + $scope.statusText($scope.current.status) + '?',
-                bodyText: 'Weet je zeker dat je de status wilt wijzigen?' + ($scope.current.status >= 10 ? ' De aanvrager zal een email ontvangen over deze wijziging.' : '')
-            };
+        // if($scope.current.status !== sInitStatus){
+            // var modalOptions = {
+                // closeButtonText: 'Annuleren',
+                // actionButtonText: 'Opslaan',
+                // headerText: 'Status wijzigen naar ' + $scope.statusText($scope.current.status) + '?',
+                // bodyText: 'Weet je zeker dat je de status wilt wijzigen?' + ($scope.current.status >= 10 ? ' De aanvrager zal een email ontvangen over deze wijziging.' : '')
+            // };
 
-            modalService.showModal({}, modalOptions).then(function (result) {
-                doSave();
-            });
-        }else{
+            // modalService.showModal({}, modalOptions).then(function (result) {
+                // doSave();
+            // });
+        // }else{
             doSave();
-        }
+        // }
         
         
     }

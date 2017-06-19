@@ -75,6 +75,9 @@
             case "int":
                 $theValue = ($theValue != "") ? intval($theValue) : "NULL";
                 break;
+            case "bool":
+                $theValue = ($theValue) ? "1" : "0";
+                break;
             case "double":
                 $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
                 break;
@@ -162,5 +165,18 @@
 
         mail($toEmail, $subject, $templatedata, $headers);
         
+    }
+    
+    $continue = true;
+    
+    function validateError($error){
+        global $continue;
+        global $response;
+        
+        if($continue){
+            $response["success"] = false;
+            $response["message"] = $error;
+            $continue = false;
+        }
     }
 ?>

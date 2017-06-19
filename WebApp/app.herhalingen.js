@@ -1,4 +1,4 @@
-angular.module("blokhut_verhuur").controller("herhalingenCtrl", function ($scope, $location, $http, modalService, SessionService) {
+angular.module("blokhut_verhuur").controller("herhalingenCtrl", function ($scope, $location, $http, modalService, SessionService, $filter) {
     $scope.isAanvraag = function(){
         return ($location.path().indexOf("aanvragen") >= 0);
     };
@@ -18,6 +18,17 @@ angular.module("blokhut_verhuur").controller("herhalingenCtrl", function ($scope
         return "--";
     }
     
+    $scope.herhalingText = function(her){
+        switch(parseInt(her.herhaaltype, 10)){
+            case 0:
+                return "Iedere " +  (globals.weekdagen[her.herhaalweekdag] || "--").toLowerCase();
+            case 1:
+                return "Dag " + her.herhaaldag + " van de maand";
+            case 2:
+                return "Iedere " + her.herhaalweek + "e " + (globals.weekdagen[her.herhaalweekdag] || "--").toLowerCase() + " van de maand";
+        }
+    }
+    
     $scope.einde = function(herhaling){
         if(herhaling.einddatum){
             return $filter('date')(herhaling.einddatum, 'dd-MM-yyyy');
@@ -26,7 +37,7 @@ angular.module("blokhut_verhuur").controller("herhalingenCtrl", function ($scope
         }
     }
     
-    $scope.dagdelen = function(herhaling){
+    $scope.dagdelenText = function(herhaling){
         var aDelen = [];
         
         if(herhaling.ochtend){
@@ -55,8 +66,10 @@ angular.module("blokhut_verhuur").controller("herhalingenCtrl", function ($scope
             if(response.data instanceof Array){
                 response.data.forEach(function(res){
                     res.startdatum = new Date(res.startdatum);
-                    
-                    res.einddatum = new Date(res.einddatum);
+                    res.ochtend = res.ochtend == "1";
+                    res.middag = res.middag == "1";
+                    res.avond = res.avond == "1";
+                    res.einddatum = (res.einddatum && new Date(res.einddatum)) || null;
                 });
                 
                 $scope.reserveringen = response.data;
